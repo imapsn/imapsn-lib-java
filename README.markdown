@@ -1,5 +1,5 @@
 This is a prototype of the draft IMAPSN client specification found at
-http://imapsn.github.com/2010/imapsn-client.html
+<http://imapsn.github.com/2010/imapsn-client.html>.
 
 The hope is that this will grow into a reference implementation.
 
