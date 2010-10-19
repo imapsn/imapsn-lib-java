@@ -1,0 +1,81 @@
+{
+  "type" : "object",
+  "title" : "activity",
+  "description" : "An activity construct recounts what an actor did to an object in the past. If there is no actor it simply describes the change.",
+  "properties": {
+    "id" :{
+      "type" : "string",
+      "description" : "Uniquely identifies each activity within the service",
+      "default" :"{link}"
+    },
+    "actor" : {
+      "type": "object",
+      "description": "Identifies the entity that performed the activity. Example: A person or user",
+      "properties" : {"$ref":"./object.json#properties"},
+      "optional" : true
+    },
+    "verb" : {
+      "title" : "verb",
+      "type" : "string",
+      "default": "post",
+      "optional" : "true",
+      "description" :"Represents the type of action performed by the actor."
+    },
+    "object" : {
+      "type": "object",
+      "description" : "Identifies the primary object of the activity. Example: A photo",
+      "properties" : {"$ref":"./object.json#properties"}
+    },
+    "target" : {
+      "type": "object",
+      "optional" : true,
+      "description" : "Represents the object to which the activity was performed. Example: A photo album",
+      "properties" : {"$ref":"./object.json#properties"}
+    },
+    "time" : {
+      "type" : "string",
+      "description": "Time at which the activity occurred",
+      "format" : "date"
+    },
+    "generator" : {
+      "type": "object",
+      "description": "Represents the application which created the activity, which may be separate from the service to which the activity is published. For example, a third-party application on a mobile phone may be used to post a photo to a photo sharing service.",
+      "optional" : true,
+      "properties" : {"$ref":"./object.json#properties"}
+    },
+    "provider" : {
+      "type": "object",
+      "description" : "Represents the service which is publishing the activity",
+      "optional" : true,
+      "properties" : {"$ref":"./object.json#properties"}
+    },
+    "title" : {
+      "type" : "string",
+      "description" : "An HTML representation of the natural language title for this activity. Consumers MAY use the value of this field, if set, as a fallback for when none of the provided verbs are recognized",
+      "format": "html",
+      "optional" : true
+    },
+    "body" : {
+      "type" : "string",
+      "description" : "An HTML representation of a natural language describing this activity including visual elements such as thumbnails. Consumers MAY use the value of this field, if set, as a fallback for when none of the provided verbs are recognized",
+      "format" : "html",
+      "optional" : true
+    },
+    "link" : {
+      "type" : "string",
+      "description" : "Permalink to the activity",
+      "format" : "url",
+      "optional":true
+    },
+    "links" : {
+      "type" : "array",
+      "optional" : true,
+      "description" :"Links between this object and other resources as defined in Web Linking",
+      "note": "Tell JSON schema team to not put links inside http://json-schema.org/hyper-schema#properties",
+      "properties" : {"$ref" : "http://json-schema.org/links#properties"}
+    }
+  },
+  "links": [
+       {"rel": "describedby", "href": "./verbs/{verb}.json"}
+     ]
+}
